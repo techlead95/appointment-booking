@@ -46,7 +46,7 @@ export default function useMakeBooking(
     onError(error) {
       toast.toast({
         title: "Booking failed",
-        description: error.response?.data.error || "An error occurred",
+        description: error.response?.data.error,
         variant: "destructive",
       });
     },
