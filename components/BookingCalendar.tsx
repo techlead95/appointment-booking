@@ -8,6 +8,8 @@ import { Calendar, dateFnsLocalizer, SlotInfo } from "react-big-calendar";
 import useMakeBooking from "@/hooks/useMakeBooking";
 import useBookings from "@/hooks/useBookings";
 import { useMemo } from "react";
+import { useDialog } from "@/contexts/DialogContext";
+import { BookingDialog } from "./BookingDialog";
 
 const locales = {
   "en-US": enUS,
@@ -26,6 +28,8 @@ export default function BookingCalendar() {
     year: 2024,
     month: 11,
   });
+
+  const { openDialog } = useDialog();
 
   const makeBooking = useMakeBooking();
 
@@ -49,11 +53,14 @@ export default function BookingCalendar() {
   );
 
   const handleSelectSlot = ({ start }: SlotInfo) => {
-    makeBooking.mutate({
-      name: "Test",
-      email: "test@email.com",
-      date: start,
+    const closeDialog = openDialog({
+      children: <BookingDialog onConfirm={() => {}} />,
     });
+    // makeBooking.mutate({
+    //   name: "Test",
+    //   email: "test@email.com",
+    //   date: start,
+    // });
   };
 
   return (
