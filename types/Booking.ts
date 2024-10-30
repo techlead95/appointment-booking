@@ -1,0 +1,68 @@
+export default interface Booking {
+  id: string;
+  user_id: string;
+  room_type: string;
+  room_url: string;
+  created_at: string;
+  updated_at: string;
+  starts_at: string;
+  ends_at: string;
+  name: string;
+  email: string;
+  meeting_id: string;
+  notes_url: string | null;
+  status: string;
+  cancel_reason: string | null;
+  time_zone: string;
+  sid: string;
+  room_id: string | null;
+  cancelled_by: string | null;
+  parent_booking_id: string | null;
+  reschedule_requested: boolean;
+  metadata: string | null;
+  meeting: Meeting;
+  host_name: string;
+  host_email: string;
+  is_multihost: boolean;
+  multihosts: string | null[];
+  admin_booking_url: string;
+  client_booking_url: string;
+  form_responses: Record<string, string>[];
+}
+
+export interface Meeting {
+  id: string;
+  organization_id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+  kind: string;
+  slug: string;
+  description: string;
+  duration: number;
+  start_time_increment: number;
+  lead_time: number;
+  spot: string;
+  booking_modification_allowed: boolean;
+  schedulable_range_type: string;
+  schedulable_range_value: string;
+  cancellation_lead_time: number;
+  cancellation_too_late_notice: string | null;
+  cancellation_policy: string | null;
+  rescheduling_lead_time: number;
+  rescheduling_too_late_notice: string | null;
+  is_template: boolean;
+  use_email_of_host_in_reply_to_header: boolean;
+  deleted_at: string | null;
+  homepage_id: string;
+  original_price_enabled: boolean;
+  original_price: string | null;
+  pre_booking_allowed: boolean;
+  disabled: boolean;
+  spot_in_person_location: string | null;
+  spot_custom_text: string | null;
+  sid: string;
+  durations_possible: string | null[];
+  is_email_reminders_enabled: boolean;
+  is_sms_reminders_enabled: boolean;
+}
