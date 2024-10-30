@@ -83,7 +83,9 @@ export function BookingDialog({ onSubmit }: Props) {
             )}
           />
           <DialogFooter>
-            <Button type="submit">Book</Button>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              Book
+            </Button>
           </DialogFooter>
         </form>
       </Form>

@@ -33,8 +33,8 @@ export default function RootLayout({
       >
         <QueryProvider>
           <DialogProvider>{children}</DialogProvider>
+          <Toaster />
         </QueryProvider>
-        <Toaster />
       </body>
     </html>
   );

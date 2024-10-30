@@ -29,10 +29,15 @@ export default function BookingCalendar() {
     month: 11,
   });
 
-  const { openDialog } = useDialog();
-  const makeBooking = useMakeBooking();
+  const { data: { bookings } = {}, refetch } = useBookings();
 
-  const { data: { bookings } = {} } = useBookings();
+  const makeBooking = useMakeBooking({
+    onSuccess() {
+      refetch();
+    },
+  });
+
+  const { openDialog } = useDialog();
 
   const events = useMemo(
     () =>
@@ -55,11 +60,13 @@ export default function BookingCalendar() {
     const closeDialog = openDialog({
       children: (
         <BookingDialog
-          onSubmit={(values) => {
-            makeBooking.mutate({
-              ...values,
-              date: start,
-            });
+          onSubmit={async (values) => {
+            try {
+              await makeBooking.mutateAsync({
+                ...values,
+                date: start,
+              });
+            } catch {}
 
             closeDialog();
           }}
@@ -69,15 +76,17 @@ export default function BookingCalendar() {
   };
 
   return (
-    <Calendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-      view="week"
-      views={["week"]}
-      selectable
-      onSelectSlot={handleSelectSlot}
-    />
+    <div className="p-6">
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        view="week"
+        views={["week"]}
+        selectable
+        onSelectSlot={handleSelectSlot}
+      />
+    </div>
   );
 }
