@@ -30,7 +30,6 @@ export default function BookingCalendar() {
   });
 
   const { openDialog } = useDialog();
-
   const makeBooking = useMakeBooking();
 
   const { data: { bookings } = {} } = useBookings();
@@ -54,13 +53,19 @@ export default function BookingCalendar() {
 
   const handleSelectSlot = ({ start }: SlotInfo) => {
     const closeDialog = openDialog({
-      children: <BookingDialog onConfirm={() => {}} />,
+      children: (
+        <BookingDialog
+          onSubmit={(values) => {
+            makeBooking.mutate({
+              ...values,
+              date: start,
+            });
+
+            closeDialog();
+          }}
+        />
+      ),
     });
-    // makeBooking.mutate({
-    //   name: "Test",
-    //   email: "test@email.com",
-    //   date: start,
-    // });
   };
 
   return (
