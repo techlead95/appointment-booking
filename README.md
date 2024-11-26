@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![image](https://github.com/user-attachments/assets/45104cd9-d8e9-4a73-82eb-180c18301546)
+![image](https://github.com/user-attachments/assets/e794e03e-d798-4c8b-b822-876ce77d42ec)
+
+This is a appointment booking application bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Configuration of environment variables
 
